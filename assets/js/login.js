@@ -23,12 +23,12 @@ $(function () {
       // value: 是获取到的确认密码框中的值
       // item： 就是确认密码框这个标签对象
       //  2.1 获取第一次输入的密码
-      var passVal = $('.register .myForm input[name=password]').val()
+      var passVal = $(".register .myForm input[name=password]").val();
       // 2.2 判断两次密码是否一样
       if (passVal !== value) {
         // 清空两次输入框
-        $('.register .myForm .pass,.register .myForm .repass').val('')
-        return '两次输入的密码不一样'
+        $(".register .myForm .pass,.register .myForm .repass").val("");
+        return "两次输入的密码不一样";
       }
     },
     //我们既支持上述函数式的方式，也支持下述数组的形式
@@ -43,11 +43,10 @@ $(function () {
     // 3.3 发送Ajax请求
     $.ajax({
       type: "post",
-      url: "http://ajax.frontend.itheima.net/api/reguser",
+      url: "/api/reguser",
       // serialize()表单序列化会将 form标签中的所有具有name属性的值一并获取到并拼接成'key=value&key=value'形式的字符串
       data: $(this).serialize(),
       success: function (res) {
-        // console.log(res);
         if (res.status == 0) {
           // 3.4 如果注册成功，应该要切换到登陆页面
           $(".login").show().next().hide();
@@ -62,4 +61,33 @@ $(function () {
       },
     });
   });
+  // ------------------------------------------------------------------------------
+  // 4. 实现登录功能
+  // 4.1 给form表单注册submit事件
+  $(".login .myForm").on("submit", function (e) {
+    // 4.2 阻止表单的默认提交行为
+    e.preventDefault();
+    // 4.3 发送Ajax请求
+    $.ajax({
+      type: "post",
+      url: "/api/login",
+      // serialize()表单序列化会将 form标签中的所有具有name属性的值一并获取到并拼接成'key=value&key=value'形式的字符串
+      data: $(this).serialize(),
+      success: function (res) {
+        if (res.status == 0) {
+          // 4.4 如果验证成功，应该要切换到首页
+          location.href = "index.html";
+        } else {
+          // 4.5 如果用户名冲突则要提示
+          layer.open({
+            title: "温馨提示",
+            content: res.message,
+            time: 2000,
+          });
+        }
+      },
+    });
+  });
+
+  // -----------------------------------------------------------------------------------
 });
