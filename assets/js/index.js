@@ -8,6 +8,8 @@ $(function () {
     },
     success: function (info) {
       if (info.status == 0) {
+        console.log(1);
+
         // 将正确的名字渲染到页面
         $(".welcome").html(`欢迎&nbsp;&nbsp;${info.data.username}`);
         console.log(info);
