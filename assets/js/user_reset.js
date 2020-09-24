@@ -4,6 +4,13 @@ $(function () {
     repass: function (value, item) {
       // value: 是获取到的确认密码框中的值
       // item： 就是确认密码框这个标签对象
+      // 获取旧密码 判断是否与新密码相同
+      var pwd = $(".myForm input[name=oldPwd]").val();
+      if (pwd == value) {
+        // 清空新密码输入框
+        $(".myForm .pass,.myForm .repass").val("");
+        return "新密码不能与旧密码相同";
+      }
       //  2.1 获取第一次输入的密码
       var passVal = $(".myForm input[name=newPwd]").val();
       // 2.2 判断两次密码是否一样
@@ -31,9 +38,9 @@ $(function () {
           content: res.message,
           time: 2000,
         });
+        // 清空三个密码框
+        $(".myForm .pass,.myForm .repass,.myForm .pwd").val("");
       },
     });
-    // localStorage.removeItem("token");
-    // location.href = "login.html";
   });
 });
