@@ -8,11 +8,9 @@ $(function () {
     },
     success: function (info) {
       if (info.status == 0) {
-        console.log(1);
-
         // 将正确的名字渲染到页面
         $(".welcome").html(`欢迎&nbsp;&nbsp;${info.data.username}`);
-        console.log(info);
+        // console.log(info);
         if (info.data.user_pic) {
           // 有头像时，显示头像
           $(".userInfo .layui-nav-img").show().attr("src", info.data.user_pic);
@@ -30,6 +28,17 @@ $(function () {
       }
     },
   });
-
+  // 给退出按钮注册点击事件 退出登录
+  $(".logout").on("click", function () {
+    layer.confirm("确认退出吗？", { icon: 3, title: "提示" }, function (index) {
+      localStorage.removeItem("token");
+      // 关闭弹出层
+      layer.close(index);
+      location.href = "login.html";
+      // location.replace(
+      //   "file:///D:/Desktop/%E7%99%BE%E5%AE%9D%E7%AE%B1/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/GIT/BigNews/index.html"
+      // );
+    });
+  });
   // --------------------------------------------------------------
 });

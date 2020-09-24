@@ -74,9 +74,14 @@ $(function () {
       // serialize()表单序列化会将 form标签中的所有具有name属性的值一并获取到并拼接成'key=value&key=value'形式的字符串
       data: $(this).serialize(),
       success: function (res) {
+        // if (res.status == 0) {
+        //   // 4.4 如果验证成功，应该要切换到首页
+        //   location.href = "index.html";
         if (res.status == 0) {
-          // 4.4 如果验证成功，应该要切换到首页
-          location.href = "index.html";
+          //4.5 还应该将服务器端响应回来的token存储到本地存储当中
+          window.localStorage.setItem("token", res.token);
+          // 4.6 如果登陆成功则要跳转到主页面index.html
+          location.href = "./index.html";
         } else {
           // 4.5 如果用户名冲突则要提示
           layer.open({
