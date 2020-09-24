@@ -11,6 +11,7 @@ $.ajaxPrefilter(function (options) {
   }
   // 开启权限设置 防翻墙
   options.complete = function (res) {
+    console.log(res);
     // 如果身份验证失败 则需要清空token 跳转到登录页面
     if (
       res.responseJSON.status == 1 &&
