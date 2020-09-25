@@ -9,7 +9,7 @@ $(function () {
     success: function (info) {
       if (info.status == 0) {
         // 将正确的名字渲染到页面
-        $(".welcome").html(`欢迎&nbsp;&nbsp;${info.data.username}`);
+        $(".welcome").html(`欢迎&nbsp;&nbsp;${info.data.nickname}`);
         // console.log(info);
         if (info.data.user_pic) {
           // 有头像时，显示头像
