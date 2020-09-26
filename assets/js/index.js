@@ -41,9 +41,7 @@ $(function () {
       // 关闭弹出层
       layer.close(index);
       location.href = "login.html";
-      // location.replace(
-      //   "file:///D:/Desktop/%E7%99%BE%E5%AE%9D%E7%AE%B1/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/GIT/BigNews/index.html"
-      // );
+      // location.replace("http://127.0.0.1:5500/BigNews/index.html");
     });
   });
   // --------------------------------------------------------------
